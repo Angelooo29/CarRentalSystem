@@ -32,7 +32,7 @@ public class LoginController {
         String password = passwordField.getText();
 
         if ("admin".equals(username) && "123".equals(password)) {
-            showAlert("Login Success", "Welcome, admin!");
+            showAlert("Login Success", "Welcome, yo!");
             return;
         }
 
