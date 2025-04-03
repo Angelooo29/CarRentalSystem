@@ -11,10 +11,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="800.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.LoginController">
   <center>
     <VBox alignment="CENTER" maxWidth="400.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 10;" BorderPane.alignment="CENTER">
-      <VBox alignment="CENTER" prefHeight="80.0" style="-fx-background-color: #3f51b5; -fx-background-radius: 10 10 0 0;">
+      <VBox alignment="CENTER" prefHeight="80.0" style="-fx-background-color: #800080; -fx-background-radius: 10 10 0 0;">
         <Label text="Car Rental System" textFill="WHITE">
           <font>
             <Font name="System Bold" size="24.0" />
@@ -45,7 +45,7 @@
             <Font size="14.0" />
           </font>
         </PasswordField>
-        <Button fx:id="loginButton" maxWidth="300.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="50.0" style="-fx-background-color: #3f51b5;" text="LOGIN" textFill="WHITE">
+        <Button fx:id="loginButton" maxWidth="300.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="50.0" style="-fx-background-color: #800080;" text="LOGIN" textFill="WHITE">
           <font>
             <Font name="System Bold" size="14.0" />
           </font>
