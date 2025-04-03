@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../Style/Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.MainPageClientController">
+   <children>
+      <VBox minWidth="250.0" prefHeight="720.0" prefWidth="250.0" spacing="20.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="160.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/Logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="25.0" top="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHomeButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Home">
+               <font>
+                  <Font name="Segoe UI" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <graphic>
+                  <FontAwesomeIcon fx:id="homeIcon" glyphName="HOME" />
+               </graphic>
+            </Button>
+            <Button fx:id="vehiclesButton" mnemonicParsing="false" onAction="#onVehiclesButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Vehicles">
+               <font>
+                  <Font name="Segoe UI" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <graphic>
+                  <FontAwesomeIcon fx:id="vehiclesIcon" glyphName="CAR" />
+               </graphic>
+            </Button>
+            <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#onAboutButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="About">
+               <font>
+                  <Font name="Segoe UI" size="22.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIcon fx:id="aboutIcon" glyphName="QUESTION" />
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: white;" text="Contacts">
+               <font>
+                  <Font name="Segoe UI" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <graphic>
+                  <FontAwesomeIcon glyphName="PHONE" />
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: white;" text="Settings">
+               <font>
+                  <Font name="Segoe UI" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <graphic>
+                  <FontAwesomeIcon glyphName="GEAR" />
+               </graphic>
+            </Button>
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Log Out">
+               <font>
+                  <Font name="Segoe UI" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <graphic>
+                  <FontAwesomeIcon fx:id="logoutIcon" glyphName="SIGN_OUT" />
+               </graphic>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </VBox>
+      <AnchorPane fx:id="contentArea" layoutX="259.0" maxHeight="720.0" maxWidth="830.0" minHeight="720.0" minWidth="830.0" prefHeight="720.0" prefWidth="830.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>
