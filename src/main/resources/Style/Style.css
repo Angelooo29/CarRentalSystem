@@ -1,0 +1,13 @@
+.button {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
+
+.icon-white {
+    -fx-fill: white;
+}
+
+.text-field {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
