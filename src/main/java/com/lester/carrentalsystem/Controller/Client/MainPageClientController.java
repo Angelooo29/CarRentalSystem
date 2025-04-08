@@ -112,6 +112,7 @@ public class MainPageClientController {
 
         homeIcon.getStyleClass().clear();
         homeIcon.getStyleClass().add("icon-default");
-
+        aboutIcon.getStyleClass().clear();
+        aboutIcon.getStyleClass().add("icon-default");
     }
 }
