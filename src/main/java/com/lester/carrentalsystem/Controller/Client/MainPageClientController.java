@@ -41,6 +41,11 @@ public class MainPageClientController {
     private static final String ACTIVE_BUTTON_STYLE = "-fx-background-color: #732bb5; -fx-text-fill: white;";
 
     @FXML
+    public void initialize() {
+        onHomeButtonClicked(new ActionEvent());
+    }
+
+    @FXML
     void onHomeButtonClicked(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/Home.fxml"));

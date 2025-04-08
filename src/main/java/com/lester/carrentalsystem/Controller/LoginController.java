@@ -69,6 +69,19 @@ public class LoginController {
         }
     }
 
+    @FXML
+    private void onCreateAccountClicked (ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/SignUp.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        Stage currentStage = (Stage) loginButton.getScene().getWindow();
+        currentStage.close();
+    }
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
