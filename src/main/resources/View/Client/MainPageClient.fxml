@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../Style/Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.MainPageClientController">
    <children>
       <VBox minWidth="250.0" prefHeight="720.0" prefWidth="250.0" spacing="20.0" style="-fx-background-color: white;">
@@ -52,7 +51,7 @@
                   <FontAwesomeIcon fx:id="aboutIcon" glyphName="QUESTION" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: white;" text="Contacts">
+            <Button fx:id="contactsButton" mnemonicParsing="false" onAction="#onContactsButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Contacts">
                <font>
                   <Font name="Segoe UI" size="22.0" />
                </font>
@@ -60,10 +59,10 @@
                   <Insets />
                </VBox.margin>
                <graphic>
-                  <FontAwesomeIcon glyphName="PHONE" />
+                  <FontAwesomeIcon fx:id="contactsIcon" glyphName="PHONE" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: white;" text="Settings">
+            <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Settings">
                <font>
                   <Font name="Segoe UI" size="22.0" />
                </font>
@@ -71,7 +70,7 @@
                   <Insets />
                </VBox.margin>
                <graphic>
-                  <FontAwesomeIcon glyphName="GEAR" />
+                  <FontAwesomeIcon fx:id="settingsIcon" glyphName="GEAR" />
                </graphic>
             </Button>
             <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Log Out">

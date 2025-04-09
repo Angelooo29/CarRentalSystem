@@ -2,7 +2,6 @@ package com.lester.carrentalsystem.Controller.Client;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,17 +27,32 @@ public class MainPageClientController {
     @FXML
     private Button aboutButton;
     @FXML
+    private Button contactsButton;
+    @FXML
+    private Button settingsButton;
+    @FXML
     private Button logoutButton;
 
     @FXML
     private FontAwesomeIcon homeIcon;
     @FXML
+    private FontAwesomeIcon vehiclesIcon;
+    @FXML
     private FontAwesomeIcon aboutIcon;
+    @FXML
+    private FontAwesomeIcon contactsIcon;
+    @FXML
+    private FontAwesomeIcon settingsIcon;
     @FXML
     private FontAwesomeIcon logoutIcon;
 
     private static final String DEFAULT_BUTTON_STYLE = "-fx-background-color: white; -fx-text-fill: black;";
     private static final String ACTIVE_BUTTON_STYLE = "-fx-background-color: #732bb5; -fx-text-fill: white;";
+
+    @FXML
+    public void initialize() {
+        onHomeButtonClicked(new ActionEvent());
+    }
 
     @FXML
     void onHomeButtonClicked(ActionEvent event) {
@@ -60,7 +74,10 @@ public class MainPageClientController {
 
     @FXML
     void onVehiclesButtonClicked(ActionEvent event) {
-
+        resetButtonStyles();
+        vehiclesButton.setStyle(ACTIVE_BUTTON_STYLE);
+        vehiclesIcon.getStyleClass().clear();
+        vehiclesIcon.getStyleClass().add("icon-white");
     }
 
     @FXML
@@ -69,6 +86,23 @@ public class MainPageClientController {
         aboutButton.setStyle(ACTIVE_BUTTON_STYLE);
         aboutIcon.getStyleClass().clear();
         aboutIcon.getStyleClass().add("icon-white");
+    }
+
+
+    @FXML
+    void onContactsButtonClicked(ActionEvent event) {
+        resetButtonStyles();
+        contactsButton.setStyle(ACTIVE_BUTTON_STYLE);
+        contactsIcon.getStyleClass().clear();
+        contactsIcon.getStyleClass().add("icon-white");
+    }
+
+    @FXML
+    void onSettingsButtonClicked(ActionEvent event) {
+        resetButtonStyles();
+        settingsButton.setStyle(ACTIVE_BUTTON_STYLE);
+        settingsIcon.getStyleClass().clear();
+        settingsIcon.getStyleClass().add("icon-white");
     }
 
     @FXML
@@ -107,6 +141,10 @@ public class MainPageClientController {
     private void resetButtonStyles() {
         homeButton.setStyle(DEFAULT_BUTTON_STYLE);
         aboutButton.setStyle(DEFAULT_BUTTON_STYLE);
+        vehiclesButton.setStyle(DEFAULT_BUTTON_STYLE);
+        contactsButton.setStyle(DEFAULT_BUTTON_STYLE);
+        settingsButton.setStyle(DEFAULT_BUTTON_STYLE);
+
 
 
 
@@ -114,5 +152,11 @@ public class MainPageClientController {
         homeIcon.getStyleClass().add("icon-default");
         aboutIcon.getStyleClass().clear();
         aboutIcon.getStyleClass().add("icon-default");
+        vehiclesIcon.getStyleClass().clear();
+        vehiclesIcon.getStyleClass().add("icon-default");
+        contactsIcon.getStyleClass().clear();
+        contactsIcon.getStyleClass().add("icon-default");
+        settingsIcon.getStyleClass().clear();
+        settingsIcon.getStyleClass().add("icon-default");
     }
 }

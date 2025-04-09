@@ -1,5 +1,6 @@
 package com.lester.carrentalsystem.Controller;
 
+import com.lester.carrentalsystem.Model.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,12 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class SignUpController {
     @FXML
@@ -28,70 +30,65 @@ public class SignUpController {
     private PasswordField passwordField;
 
     @FXML
-    private PasswordField confirmPasswordField;
-
-    @FXML
     private Button signupButton;
 
     @FXML
-    private Hyperlink loginLink;
-
-    @FXML
-    public void initialize() {
-        // Initialize UI components if needed
-    }
-
-    @FXML
-    public void handleSignup(ActionEvent event) {
+    void onSignupButtonClicked(ActionEvent event) {
         String fullName = fullNameField.getText();
         String email = emailField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
 
-        // Validation
-        if (fullName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Signup Error", "Please fill in all fields.");
+        if (fullName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "All fields must be filled out!");
             return;
         }
 
-        if (!password.equals(confirmPassword)) {
-            showAlert(Alert.AlertType.ERROR, "Signup Error", "Passwords do not match.");
-            return;
+        try (Connection connection = DBConnection.getConnection()) {
+            String sql = "INSERT INTO users_client (Fullname, Email, Username, Password) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, fullName);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, username);
+            preparedStatement.setString(4, password);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Sign up successful!");
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
+                    Parent root = loader.load();
+
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+
+                    Stage currentStage = (Stage) signupButton.getScene().getWindow();
+                    currentStage.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred: " + e.getMessage());
         }
-
-        // Here you would add code to save the user to your database
-        // For this example, we'll just show a success message
-
-        showAlert(Alert.AlertType.INFORMATION, "Signup Successful",
-                "Your account has been created successfully. You can now login.");
-
-        // Navigate back to login screen
-        navigateToLogin();
     }
 
     @FXML
-    public void handleLoginLink(ActionEvent event) {
-        navigateToLogin();
-    }
-
-    private void navigateToLogin() {
+    void onBackHyperlinkClicked(ActionEvent event) {
         try {
-            // Load the login view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
-            Parent loginView = loader.load();
+            Parent root = loader.load();
 
-            // Get stage from login link
-            Stage stage = (Stage) loginLink.getScene().getWindow();
-
-            // Set the new scene
-            stage.setScene(new Scene(loginView));
-            stage.setTitle("Car Rental System - Login");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
             stage.show();
 
-        } catch (IOException e) {
+            Stage currentStage = (Stage) signupButton.getScene().getWindow();
+            currentStage.close();
+        } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Could not load login view.");
         }
     }
 
