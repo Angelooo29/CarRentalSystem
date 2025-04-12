@@ -1,4 +1,4 @@
-package com.lester.carrentalsystem.Model;
+package com.lester.carrentalsystem.Infrastructure.Data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

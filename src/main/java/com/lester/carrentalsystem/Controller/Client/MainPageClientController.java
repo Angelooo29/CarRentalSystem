@@ -1,5 +1,6 @@
 package com.lester.carrentalsystem.Controller.Client;
 
+import com.lester.carrentalsystem.Model.ClientSession;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,10 +75,20 @@ public class MainPageClientController {
 
     @FXML
     void onVehiclesButtonClicked(ActionEvent event) {
-        resetButtonStyles();
-        vehiclesButton.setStyle(ACTIVE_BUTTON_STYLE);
-        vehiclesIcon.getStyleClass().clear();
-        vehiclesIcon.getStyleClass().add("icon-white");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/Vehicles.fxml"));
+            Parent authenticationContent = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(authenticationContent);
+
+            resetButtonStyles();
+            vehiclesButton.setStyle(ACTIVE_BUTTON_STYLE);
+            vehiclesIcon.getStyleClass().clear();
+            vehiclesIcon.getStyleClass().add("icon-white");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -99,10 +110,20 @@ public class MainPageClientController {
 
     @FXML
     void onSettingsButtonClicked(ActionEvent event) {
-        resetButtonStyles();
-        settingsButton.setStyle(ACTIVE_BUTTON_STYLE);
-        settingsIcon.getStyleClass().clear();
-        settingsIcon.getStyleClass().add("icon-white");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/Settings.fxml"));
+            Parent authenticationContent = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(authenticationContent);
+
+            resetButtonStyles();
+            settingsButton.setStyle(ACTIVE_BUTTON_STYLE);
+            settingsIcon.getStyleClass().clear();
+            settingsIcon.getStyleClass().add("icon-white");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -123,6 +144,7 @@ public class MainPageClientController {
                 Parent root = loader.load();
 
                 Stage stage = new Stage();
+                stage.setTitle("Car Rental System - Log In");
                 stage.setScene(new Scene(root));
                 stage.show();
 
@@ -144,9 +166,6 @@ public class MainPageClientController {
         vehiclesButton.setStyle(DEFAULT_BUTTON_STYLE);
         contactsButton.setStyle(DEFAULT_BUTTON_STYLE);
         settingsButton.setStyle(DEFAULT_BUTTON_STYLE);
-
-
-
 
         homeIcon.getStyleClass().clear();
         homeIcon.getStyleClass().add("icon-default");

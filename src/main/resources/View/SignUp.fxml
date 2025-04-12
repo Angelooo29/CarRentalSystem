@@ -1,83 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="500.0" minHeight="600.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" stylesheets="@../Style/Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.SignUpController">
    <children>
       <AnchorPane maxHeight="500.0" maxWidth="500.0" minHeight="500.0" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="fullNameField" layoutX="74.0" layoutY="132.0" maxWidth="350.0" prefHeight="50.0" prefWidth="350.0" style="-fx-border-color: black;">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="emailField" layoutX="79.0" layoutY="220.0" maxWidth="350.0" prefHeight="50.0" prefWidth="350.0" style="-fx-border-color: black;">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="usernameField" layoutX="79.0" layoutY="302.0" maxWidth="350.0" prefHeight="50.0" prefWidth="350.0" style="-fx-border-color: black;">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </TextField>
-            <PasswordField fx:id="passwordField" layoutX="79.0" layoutY="390.0" maxWidth="350.0" prefHeight="50.0" prefWidth="350.0" style="-fx-border-color: black;">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </PasswordField>
             <Button fx:id="signupButton" layoutX="170.0" layoutY="474.0" maxWidth="300.0" mnemonicParsing="false" onAction="#onSignupButtonClicked" prefHeight="50.0" prefWidth="155.0" style="-fx-background-color: #531F72;" text="SIGN UP" textFill="WHITE">
                <font>
                   <Font name="Yu Gothic UI Semibold" size="18.0" />
                </font>
             </Button>
-            <Label layoutX="74.0" layoutY="101.0" text="Full Name:">
-               <font>
-                  <Font name="Segoe UI Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label layoutX="79.0" layoutY="198.0" text="Email:">
-               <font>
-                  <Font name="Segoe UI Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label layoutX="77.0" layoutY="279.0" text="Username:">
-               <font>
-                  <Font name="Segoe UI Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label layoutX="79.0" layoutY="367.0" text="Password:">
-               <font>
-                  <Font name="Segoe UI Bold" size="17.0" />
-               </font>
-            </Label>
-            <Label layoutX="135.0" layoutY="14.0" prefHeight="76.0" prefWidth="234.0" text="Create New Account!" textAlignment="CENTER">
-               <font>
-                  <Font name="Yu Gothic UI Semibold" size="24.0" />
-               </font>
-            </Label>
             <Hyperlink layoutX="162.0" layoutY="538.0" onAction="#onBackHyperlinkClicked" text="Already have an account?">
                <font>
                   <Font name="Yu Gothic UI Semibold" size="14.0" />
                </font>
             </Hyperlink>
+            <VBox layoutX="98.0" layoutY="55.0" prefHeight="259.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="76.0" prefWidth="234.0" text="Create New Account!" textAlignment="CENTER">
+                     <font>
+                        <Font name="Yu Gothic UI Semibold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="33.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Full Name:">
+                     <font>
+                        <Font name="Segoe UI Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fullNameField" maxWidth="350.0" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: black;">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Contact Number:">
+                     <font>
+                        <Font name="Segoe UI Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="contactNumberField" maxWidth="350.0" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: black;">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Username:">
+                     <font>
+                        <Font name="Segoe UI Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameField" maxWidth="350.0" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: black;">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Password:">
+                     <font>
+                        <Font name="Segoe UI Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="passwordField" maxWidth="350.0" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: black;">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </PasswordField>
+
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="500.0" minHeight="500.0" minWidth="300.0" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #531F72;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="271.0" fitWidth="269.0" layoutX="18.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="187.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="14.600000000000023" AnchorPane.topAnchor="100.0">
-               <image>
-                  <Image url="@../Images/Logo.png" />
-               </image>
-            </ImageView>
+            <VBox layoutX="68.0" layoutY="113.0" prefHeight="269.0" prefWidth="186.0" spacing="10.0">
+               <children>
+                  <Label text="Driver's License:" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="uploadDriversLicenseButton" onAction="#onUploadDriversLicenseClicked" style="-fx-background-color: white;" text="Upload Driver's License">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font></Button>
+                  <ImageView fx:id="driversLicenseImageView" fitHeight="100.0" fitWidth="170.0" preserveRatio="true" style="-fx-border-color: black;" />
+
+                  <Label text="Profile Picture:" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="uploadProfilePictureButton" onAction="#onUploadProfilePictureClicked" style="-fx-background-color: white;" text="Upload Profile Picture">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font></Button>
+                  <ImageView fx:id="profilePictureImageView" fitHeight="100.0" fitWidth="170.0" preserveRatio="true" style="-fx-border-color: black;" />
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>

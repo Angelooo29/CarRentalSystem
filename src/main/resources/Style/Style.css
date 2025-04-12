@@ -11,3 +11,11 @@
     -fx-background-radius: 25;
     -fx-border-radius: 25;
 }
+
+#nextButton {
+    -fx-background-radius: 50%;
+}
+
+#prevButton {
+    -fx-background-radius: 50%;
+}

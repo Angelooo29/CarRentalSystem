@@ -1,0 +1,7 @@
+USE crs_db;
+
+CREATE TABLE cars (
+    CarId INT AUTO_INCREMENT PRIMARY KEY,
+    CarName VARCHAR(50) NOT NULL,
+    CarType VARCHAR(30) NOT NULL,
+);

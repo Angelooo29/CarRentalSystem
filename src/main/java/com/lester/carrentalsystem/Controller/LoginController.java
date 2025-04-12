@@ -1,5 +1,6 @@
 package com.lester.carrentalsystem.Controller;
 
+import com.lester.carrentalsystem.Model.ClientSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,21 +17,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.lester.carrentalsystem.Model.DBConnection;
+import com.lester.carrentalsystem.Infrastructure.Data.DBConnection;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class LoginController {
+
     @FXML
     private TextField usernameField;
-
     @FXML
     private PasswordField passwordField;
 
     @FXML
     private Button loginButton;
 
-    @FXML
     public void initialize() {
+        usernameField.setOnKeyPressed(this::handleKeyPress);
+        passwordField.setOnKeyPressed(this::handleKeyPress);
+
+        loginButton.setOnMouseEntered(e -> loginButton.setStyle("-fx-background-color: #9145f5;"));
+        loginButton.setOnMouseExited(e -> loginButton.setStyle("-fx-background-color:  #732bb5;"));
+    }
+
+    private void handleKeyPress(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            onLoginButtonClicked(new ActionEvent(loginButton, null));
+        }
     }
 
     @FXML
@@ -39,27 +52,20 @@ public class LoginController {
         String password = passwordField.getText();
 
         try (Connection connection = DBConnection.getConnection()) {
-            String query = "SELECT * FROM users_client WHERE Username = ? AND Password = ?";
+            String query = "SELECT ClientId, Fullname, Username, ContactNumber FROM users_client WHERE Username = ? AND Password = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, username);
             statement.setString(2, password);
 
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/MainPageClient.fxml"));
-                    Parent root = loader.load();
+                int userId = resultSet.getInt("ClientId");
+                String fullName = resultSet.getString("Fullname");
+                String contactNumber = resultSet.getString("ContactNumber");
 
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.show();
+                ClientSession.getInstance().setClientData(userId, fullName, username, contactNumber);
 
-                    Stage currentStage = (Stage) loginButton.getScene().getWindow();
-                    currentStage.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    showAlert("Navigation Error", "Unable to load the main page.");
-                }
+                loadMainPage();
             } else {
                 showAlert("Login Failed", "Invalid username or password.");
             }
@@ -69,12 +75,31 @@ public class LoginController {
         }
     }
 
+    private void loadMainPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/MainPageClient.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Car Rental System");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage currentStage = (Stage) loginButton.getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Navigation Error", "Unable to load the main page.");
+        }
+    }
+
     @FXML
-    private void onCreateAccountClicked (ActionEvent event) throws IOException {
+    private void onCreateAccountClicked(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/SignUp.fxml"));
         Parent root = loader.load();
 
         Stage stage = new Stage();
+        stage.setTitle("Car Rental System - Sign Up");
         stage.setScene(new Scene(root));
         stage.show();
 

@@ -15,4 +15,6 @@ module com.lester.carrentalsystem {
 
     exports com.lester.carrentalsystem.Controller.Client to javafx.fxml;
     opens com.lester.carrentalsystem.Controller.Client to javafx.fxml, javafx.base;
+
+    exports com.lester.carrentalsystem.Infrastructure.Migration to javafx.graphics;
 }
