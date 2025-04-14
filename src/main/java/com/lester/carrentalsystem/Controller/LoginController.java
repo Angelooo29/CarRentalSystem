@@ -1,5 +1,6 @@
 package com.lester.carrentalsystem.Controller;
 
+import com.lester.carrentalsystem.Controller.Client.MainPageClientController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,13 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.lester.carrentalsystem.Model.DBConnection;
 import javafx.stage.Stage;
 
@@ -30,8 +29,7 @@ public class LoginController {
     private Button loginButton;
 
     @FXML
-    public void initialize() {
-    }
+    public void initialize() {loginButton.setDefaultButton(true);}
 
     @FXML
     private void onLoginButtonClicked(ActionEvent event) {
@@ -46,31 +44,38 @@ public class LoginController {
 
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/MainPageClient.fxml"));
-                    Parent root = loader.load();
+                // Retrieve the Fullname from the query result.
+                String fullName = resultSet.getString("Fullname");
 
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.show();
+                // Load the MainPageClient FXML using FXMLLoader.
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/MainPageClient.fxml"));
+                Parent root = loader.load();
 
-                    Stage currentStage = (Stage) loginButton.getScene().getWindow();
-                    currentStage.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    showAlert("Navigation Error", "Unable to load the main page.");
-                }
+                // Get the controller instance from the FXMLLoader.
+                MainPageClientController mainController = loader.getController();
+                // Pass the full name (and/or username, password if you need) to the next controller.
+                mainController.setWelcomeData(fullName);
+
+                // Create the new stage and show the main page.
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                // Close the current login stage.
+                Stage currentStage = (Stage) loginButton.getScene().getWindow();
+                currentStage.close();
             } else {
                 showAlert("Login Failed", "Invalid username or password.");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
-            showAlert("Database Error", "Unable to connect to the database.");
+            showAlert("Error", "An error occurred while processing your request.");
         }
     }
 
+
     @FXML
-    private void onCreateAccountClicked (ActionEvent event) throws IOException {
+    private void onCreateAccountClicked(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/SignUp.fxml"));
         Parent root = loader.load();
 

@@ -4,21 +4,26 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-
+import javafx.util.Pair;
 import java.util.Optional;
-
 
 public class MainPageClientController {
 
     @FXML
     private AnchorPane contentArea;
+
+    @FXML
+    private Label nameLabel;
 
     @FXML
     private Button homeButton;
@@ -46,13 +51,21 @@ public class MainPageClientController {
     @FXML
     private FontAwesomeIcon logoutIcon;
 
-    private static final String DEFAULT_BUTTON_STYLE = "-fx-background-color: white; -fx-text-fill: black;";
+    private static final String DEFAULT_BUTTON_STYLE = "-fx-background-color: white; -fx-text-fill: #732bb5;";
     private static final String ACTIVE_BUTTON_STYLE = "-fx-background-color: #732bb5; -fx-text-fill: white;";
 
+    private Pair<Button, FontAwesomeIcon> lastActive;
+
     @FXML
-    public void initialize() {
-        onHomeButtonClicked(new ActionEvent());
+    public void setWelcomeData(String fullName) {
+        nameLabel.setAlignment(Pos.CENTER);
+        nameLabel.setTextAlignment(TextAlignment.CENTER);
+        nameLabel.setText(fullName + "!");
     }
+
+
+    @FXML
+    public void initialize() {onHomeButtonClicked(new ActionEvent());}
 
     @FXML
     void onHomeButtonClicked(ActionEvent event) {
@@ -67,6 +80,8 @@ public class MainPageClientController {
             homeButton.setStyle(ACTIVE_BUTTON_STYLE);
             homeIcon.getStyleClass().clear();
             homeIcon.getStyleClass().add("icon-white");
+
+            lastActive = new Pair<>(homeButton, homeIcon);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,6 +93,7 @@ public class MainPageClientController {
         vehiclesButton.setStyle(ACTIVE_BUTTON_STYLE);
         vehiclesIcon.getStyleClass().clear();
         vehiclesIcon.getStyleClass().add("icon-white");
+        lastActive = new Pair<>(vehiclesButton, vehiclesIcon);
     }
 
     @FXML
@@ -86,8 +102,8 @@ public class MainPageClientController {
         aboutButton.setStyle(ACTIVE_BUTTON_STYLE);
         aboutIcon.getStyleClass().clear();
         aboutIcon.getStyleClass().add("icon-white");
+        lastActive = new Pair<>(aboutButton, aboutIcon);
     }
-
 
     @FXML
     void onContactsButtonClicked(ActionEvent event) {
@@ -95,6 +111,7 @@ public class MainPageClientController {
         contactsButton.setStyle(ACTIVE_BUTTON_STYLE);
         contactsIcon.getStyleClass().clear();
         contactsIcon.getStyleClass().add("icon-white");
+        lastActive = new Pair<>(contactsButton, contactsIcon);
     }
 
     @FXML
@@ -103,18 +120,22 @@ public class MainPageClientController {
         settingsButton.setStyle(ACTIVE_BUTTON_STYLE);
         settingsIcon.getStyleClass().clear();
         settingsIcon.getStyleClass().add("icon-white");
+        lastActive = new Pair<>(settingsButton, settingsIcon);
     }
 
     @FXML
     void onLogoutButtonClicked(ActionEvent event) {
+        Pair<Button, FontAwesomeIcon> previousActive = lastActive;
+
+        resetButtonStyles();
+        logoutButton.setStyle(ACTIVE_BUTTON_STYLE);
+        logoutIcon.getStyleClass().clear();
+        logoutIcon.getStyleClass().add("icon-white");
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout Confirmation");
         alert.setHeaderText("You're about to logout!");
         alert.setContentText("Are you sure you want to logout?");
-
-        logoutButton.setStyle(ACTIVE_BUTTON_STYLE);
-        logoutIcon.getStyleClass().clear();
-        logoutIcon.getStyleClass().add("icon-white");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -135,6 +156,14 @@ public class MainPageClientController {
             logoutButton.setStyle(DEFAULT_BUTTON_STYLE);
             logoutIcon.getStyleClass().clear();
             logoutIcon.getStyleClass().add("icon-default");
+
+            if (previousActive != null) {
+                Button lastButton = previousActive.getKey();
+                FontAwesomeIcon lastIcon = previousActive.getValue();
+                lastButton.setStyle(ACTIVE_BUTTON_STYLE);
+                lastIcon.getStyleClass().clear();
+                lastIcon.getStyleClass().add("icon-white");
+            }
         }
     }
 
@@ -144,9 +173,7 @@ public class MainPageClientController {
         vehiclesButton.setStyle(DEFAULT_BUTTON_STYLE);
         contactsButton.setStyle(DEFAULT_BUTTON_STYLE);
         settingsButton.setStyle(DEFAULT_BUTTON_STYLE);
-
-
-
+        logoutButton.setStyle(DEFAULT_BUTTON_STYLE);
 
         homeIcon.getStyleClass().clear();
         homeIcon.getStyleClass().add("icon-default");
@@ -158,5 +185,11 @@ public class MainPageClientController {
         contactsIcon.getStyleClass().add("icon-default");
         settingsIcon.getStyleClass().clear();
         settingsIcon.getStyleClass().add("icon-default");
+        logoutIcon.getStyleClass().clear();
+        logoutIcon.getStyleClass().add("icon-default");
     }
+
+
+
+
 }

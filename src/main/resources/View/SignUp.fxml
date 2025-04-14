@@ -39,27 +39,27 @@
                   <Font name="Yu Gothic UI Semibold" size="18.0" />
                </font>
             </Button>
-            <Label layoutX="74.0" layoutY="101.0" text="Full Name:">
+            <Label layoutX="74.0" layoutY="101.0" text="Full Name:" textFill="#531f72">
                <font>
                   <Font name="Segoe UI Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="79.0" layoutY="198.0" text="Email:">
+            <Label layoutX="79.0" layoutY="198.0" text="Email:" textFill="#531f72">
                <font>
                   <Font name="Segoe UI Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="77.0" layoutY="279.0" text="Username:">
+            <Label layoutX="77.0" layoutY="279.0" text="Username:" textFill="#531f72">
                <font>
                   <Font name="Segoe UI Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="79.0" layoutY="367.0" text="Password:">
+            <Label layoutX="79.0" layoutY="367.0" text="Password:" textFill="#531f72">
                <font>
                   <Font name="Segoe UI Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="135.0" layoutY="14.0" prefHeight="76.0" prefWidth="234.0" text="Create New Account!" textAlignment="CENTER">
+            <Label layoutX="135.0" layoutY="14.0" prefHeight="76.0" prefWidth="234.0" text="Create New Account!" textAlignment="CENTER" textFill="#531f72">
                <font>
                   <Font name="Yu Gothic UI Semibold" size="24.0" />
                </font>
@@ -73,7 +73,7 @@
       </AnchorPane>
       <AnchorPane layoutX="500.0" minHeight="500.0" minWidth="300.0" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #531F72;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="271.0" fitWidth="269.0" layoutX="18.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="187.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="14.600000000000023" AnchorPane.topAnchor="100.0">
+            <ImageView fitHeight="271.0" fitWidth="269.0" layoutX="16.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="166.0">
                <image>
                   <Image url="@../Images/Logo.png" />
                </image>

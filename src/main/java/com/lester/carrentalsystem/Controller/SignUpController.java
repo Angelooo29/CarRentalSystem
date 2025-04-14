@@ -32,6 +32,8 @@ public class SignUpController {
     @FXML
     private Button signupButton;
 
+    public void initialize() {signupButton.setDefaultButton(true);}
+
     @FXML
     void onSignupButtonClicked(ActionEvent event) {
         String fullName = fullNameField.getText();

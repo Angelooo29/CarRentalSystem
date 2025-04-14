@@ -48,7 +48,7 @@
       </AnchorPane>
       <AnchorPane layoutX="35.0" layoutY="47.0" minHeight="500.0" minWidth="300.0" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #531F72;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="271.0" fitWidth="269.0" layoutX="18.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="187.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="14.600000000000023" AnchorPane.topAnchor="100.0">
+            <ImageView fitHeight="271.0" fitWidth="269.0" layoutX="16.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="116.0">
                <image>
                   <Image url="@../Images/Logo.png" />
                </image>

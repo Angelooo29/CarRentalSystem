@@ -3,6 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,7 +22,23 @@
                   <Insets left="25.0" top="20.0" />
                </VBox.margin>
             </ImageView>
-            <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHomeButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Home">
+            <Label fx:id="welcomeLabel" alignment="CENTER" prefWidth="200.0" text="Welcome," textFill="#732bb5">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Segoe UI" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameLabel" alignment="CENTER" layoutX="30.0" layoutY="220.0" prefWidth="200.0" text="NAME" textFill="#732bb5">
+               <font>
+                  <Font name="Segoe UI Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="-10.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHomeButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text=" Home" textFill="#732bb5">
                <font>
                   <Font name="Segoe UI" size="22.0" />
                </font>
@@ -29,10 +46,10 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <graphic>
-                  <FontAwesomeIcon fx:id="homeIcon" glyphName="HOME" />
+                  <FontAwesomeIcon fx:id="homeIcon" fill="#732bb5" glyphName="HOME" />
                </graphic>
             </Button>
-            <Button fx:id="vehiclesButton" mnemonicParsing="false" onAction="#onVehiclesButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Vehicles">
+            <Button fx:id="vehiclesButton" mnemonicParsing="false" onAction="#onVehiclesButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text=" Vehicles" textFill="#732bb5">
                <font>
                   <Font name="Segoe UI" size="22.0" />
                </font>
@@ -40,29 +57,18 @@
                   <Insets />
                </VBox.margin>
                <graphic>
-                  <FontAwesomeIcon fx:id="vehiclesIcon" glyphName="CAR" />
+                  <FontAwesomeIcon fx:id="vehiclesIcon" fill="#732bb5" glyphName="CAR" />
                </graphic>
             </Button>
-            <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#onAboutButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="About">
+            <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#onAboutButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text=" About" textFill="#732bb5">
                <font>
                   <Font name="Segoe UI" size="22.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon fx:id="aboutIcon" glyphName="QUESTION" />
+                  <FontAwesomeIcon fx:id="aboutIcon" fill="#732bb5" glyphName="QUESTION" />
                </graphic>
             </Button>
-            <Button fx:id="contactsButton" mnemonicParsing="false" onAction="#onContactsButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Contacts">
-               <font>
-                  <Font name="Segoe UI" size="22.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <graphic>
-                  <FontAwesomeIcon fx:id="contactsIcon" glyphName="PHONE" />
-               </graphic>
-            </Button>
-            <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Settings">
+            <Button fx:id="contactsButton" mnemonicParsing="false" onAction="#onContactsButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text=" Contacts" textFill="#732bb5">
                <font>
                   <Font name="Segoe UI" size="22.0" />
                </font>
@@ -70,10 +76,10 @@
                   <Insets />
                </VBox.margin>
                <graphic>
-                  <FontAwesomeIcon fx:id="settingsIcon" glyphName="GEAR" />
+                  <FontAwesomeIcon fx:id="contactsIcon" fill="#732bb5" glyphName="PHONE" />
                </graphic>
             </Button>
-            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text="Log Out">
+            <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text=" Settings" textFill="#732bb5">
                <font>
                   <Font name="Segoe UI" size="22.0" />
                </font>
@@ -81,7 +87,18 @@
                   <Insets />
                </VBox.margin>
                <graphic>
-                  <FontAwesomeIcon fx:id="logoutIcon" glyphName="SIGN_OUT" />
+                  <FontAwesomeIcon fx:id="settingsIcon" fill="#732bb5" glyphName="GEAR" />
+               </graphic>
+            </Button>
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutButtonClicked" prefWidth="200.0" style="-fx-background-color: white;" text=" Log Out" textFill="#732bb5">
+               <font>
+                  <Font name="Segoe UI" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <graphic>
+                  <FontAwesomeIcon fx:id="logoutIcon" fill="#732bb5" glyphName="SIGN_OUT" />
                </graphic>
             </Button>
          </children>
