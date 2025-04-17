@@ -44,24 +44,19 @@ public class LoginController {
 
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                // Retrieve the Fullname from the query result.
                 String fullName = resultSet.getString("Fullname");
 
-                // Load the MainPageClient FXML using FXMLLoader.
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/MainPageClient.fxml"));
                 Parent root = loader.load();
 
-                // Get the controller instance from the FXMLLoader.
                 MainPageClientController mainController = loader.getController();
-                // Pass the full name (and/or username, password if you need) to the next controller.
                 mainController.setWelcomeData(fullName);
 
-                // Create the new stage and show the main page.
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
 
-                // Close the current login stage.
+
                 Stage currentStage = (Stage) loginButton.getScene().getWindow();
                 currentStage.close();
             } else {
