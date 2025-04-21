@@ -19,3 +19,19 @@
 #prevButton {
     -fx-background-radius: 50%;
 }
+
+
+.list-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #732bb5;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #d9bcff;
+    -fx-text-fill: #732bb5;
+}

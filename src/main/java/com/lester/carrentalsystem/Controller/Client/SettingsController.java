@@ -1,22 +1,56 @@
 package com.lester.carrentalsystem.Controller.Client;
 
+import com.lester.carrentalsystem.App;
 import com.lester.carrentalsystem.Infrastructure.Data.DBConnection;
 import com.lester.carrentalsystem.Model.ClientSession;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SettingsController {
+
+    @FXML
+    public ListView listView;
+
+    @FXML
+    public ImageView vehicleImage;
+
+    @FXML
+    public Label vehicleNameLabel;
+
+    @FXML
+    public Label priceLabel;
+
+    @FXML
+    public Label startDateLabel;
+
+    @FXML
+    public Label EndDateLabel;
+
+    @FXML
+    public Label locationLabel;
+
+    @FXML
+    public Label paymentLabel;
 
     @FXML
     private TextField clientIdField;
@@ -28,7 +62,7 @@ public class SettingsController {
     private TextField usernameField;
 
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     @FXML
     private TextField contactNumberField;
@@ -39,11 +73,22 @@ public class SettingsController {
     @FXML
     private ImageView driversLicenseView;
 
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    public Button editButton;
+
     private byte[] profilePictureData;
     private byte[] driversLicenseData;
 
     public void initialize() {
         loadClientData();
+        rentalHistory();
+        saveButton.setOnMouseEntered(e -> saveButton.setStyle("-fx-background-color: #9145f5;"));
+        saveButton.setOnMouseExited(e -> saveButton.setStyle("-fx-background-color:  #732bb5;"));
+        editButton.setOnMouseEntered(e -> editButton.setStyle("-fx-background-color: #9145f5;"));
+        editButton.setOnMouseExited(e -> editButton.setStyle("-fx-background-color:  #732bb5;"));
     }
 
     private void loadClientData() {
@@ -73,7 +118,7 @@ public class SettingsController {
                 }
             }
         } catch (SQLException e) {
-            showAlert("Database Error", "Failed to load client data: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to load client data: " + e.getMessage());
         }
     }
 
@@ -88,7 +133,7 @@ public class SettingsController {
                 profilePictureData = Files.readAllBytes(selectedFile.toPath());
                 profilePictureView.setImage(new Image(selectedFile.toURI().toString()));
             } catch (Exception e) {
-                showAlert("Error", "Failed to upload profile picture: " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to upload profile picture: " + e.getMessage());
             }
         }
     }
@@ -104,42 +149,89 @@ public class SettingsController {
                 driversLicenseData = Files.readAllBytes(selectedFile.toPath());
                 driversLicenseView.setImage(new Image(selectedFile.toURI().toString()));
             } catch (Exception e) {
-                showAlert("Error", "Failed to upload driver's license: " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to upload driver's license: " + e.getMessage());
             }
         }
     }
 
     @FXML
     private void onSaveChangesClicked() {
-        String fullName = fullNameField.getText();
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String contactNumber = contactNumberField.getText();
-
         int clientId = ClientSession.getInstance().getClientId();
 
         try (Connection connection = DBConnection.getConnection()) {
-            String sql = "UPDATE users_client SET Fullname = ?, Username = ?, Password = ?, ContactNumber = ?, ProfilePicture = ?, DriversLicense = ? WHERE ClientId = ?";
+            String sql = "UPDATE users_client SET ProfilePicture = ?, DriversLicense = ? WHERE ClientId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, fullName);
-            statement.setString(2, username);
-            statement.setString(3, password);
-            statement.setString(4, contactNumber);
-            statement.setBytes(5, profilePictureData);
-            statement.setBytes(6, driversLicenseData);
-            statement.setInt(7, clientId);
+            statement.setBytes(1, profilePictureData);
+            statement.setBytes(2, driversLicenseData);
+            statement.setInt(3, clientId);
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
-                showAlert("Success", "Information updated successfully!");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Information updated successfully!");
             }
         } catch (SQLException e) {
-            showAlert("Error", "Failed to update client information: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR,"Error", "Failed to update client information: " + e.getMessage());
         }
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    @FXML
+    private void onEditButtonClicked() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/EditUserProfile.fxml"));
+            Parent root = loader.load();
+            Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
+
+            Stage stage = new Stage();
+            stage.setTitle("Car Rental System - Edit User Profile");
+            stage.setScene(new Scene(root));
+            stage.getIcons().add(icon);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void rentalHistory() {
+        int clientId = ClientSession.getInstance().getClientId();
+        ObservableList<String> rentHistory = FXCollections.observableArrayList();
+        Map<String, Integer> rentDateToCarIdMap = new HashMap<>();
+
+        try (Connection connection = DBConnection.getConnection()) {
+            String sql = "SELECT CarId, RentStartDate, RentEndDate, PickOffLocation, PaymentMethod, Price, TransactionDate FROM transaction WHERE ClientId = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, clientId);
+            ResultSet resultSet = statement.executeQuery();
+
+            SimpleDateFormat formatter = new SimpleDateFormat("MMM. dd, yyyy");
+            while (resultSet.next()) {
+                int carId = resultSet.getInt("CarId");
+                String formattedDate = formatter.format(resultSet.getDate("RentStartDate"));
+
+                rentHistory.add(formattedDate);
+                rentDateToCarIdMap.put(formattedDate, carId);
+            }
+
+            listView.setItems(rentHistory);
+            listView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+                if (newValue != null) {
+                    int selectedCarId = rentDateToCarIdMap.get(newValue);
+                    String imagePath = "/images/car_" + selectedCarId + ".png";
+                    Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+                    vehicleImage.setImage(image);
+                }
+            });
+
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to load client data: " + e.getMessage());
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+        Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
+
+        alertStage.getIcons().add(icon);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

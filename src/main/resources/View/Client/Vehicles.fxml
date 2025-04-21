@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="830.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.VehiclesController">
+<AnchorPane prefHeight="720.0" prefWidth="830.0" style="-fx-background-color: E8D6FF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.VehiclesController">
    <children>
       <!-- Toyota Rush -->
       <AnchorPane layoutX="25.0" layoutY="104.0" prefHeight="340.0" prefWidth="250.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="104.0">
@@ -23,7 +23,7 @@
          <children>
             <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="26.0" preserveRatio="true">
                <image>
-                  <Image url="@../../Images/SUV-Rush.jpg" />
+                  <Image url="@../../Images/car_1.png" />
                </image>
             </ImageView>
             <Label layoutX="55.0" layoutY="200.0" text="Toyota Rush">
@@ -57,7 +57,7 @@
          <children>
             <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="26.0" preserveRatio="true">
                <image>
-                  <Image url="@../../Images/mgzs.jpg" />
+                  <Image url="@../../Images/car_2.png" />
                </image>
             </ImageView>
             <Label fx:id="mgAvailabilityLabel" layoutX="148.0" layoutY="244.0" text="Checking..." />
@@ -91,7 +91,7 @@
          <children>
             <ImageView fitHeight="148.0" fitWidth="236.0" layoutX="15.0" layoutY="26.0" preserveRatio="true" AnchorPane.rightAnchor="12.529409790039068">
                <image>
-                  <Image url="@../../Images/FordExplorer.png" />
+                  <Image url="@../../Images/car_3.png" />
                </image>
             </ImageView>
             <Label layoutX="52.0" layoutY="197.0" text="Ford Explorer">

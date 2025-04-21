@@ -10,13 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
-
+import javafx.scene.image.Image;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.lester.carrentalsystem.Infrastructure.Data.DBConnection;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -64,24 +63,26 @@ public class LoginController {
                 String contactNumber = resultSet.getString("ContactNumber");
 
                 ClientSession.getInstance().setClientData(userId, fullName, username, contactNumber);
-
                 loadMainPage();
             } else {
-                showAlert("Login Failed", "Invalid username or password.");
+                showAlert("Login Failed", "Invalid Username or Password.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert("Database Error", "Unable to connect to the database.");
         }
+
     }
 
     private void loadMainPage() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/MainPageClient.fxml"));
             Parent root = loader.load();
+            Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
 
             Stage stage = new Stage();
             stage.setTitle("Car Rental System");
+            stage.getIcons().add(icon);
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -97,9 +98,11 @@ public class LoginController {
     private void onCreateAccountClicked(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/SignUp.fxml"));
         Parent root = loader.load();
+        Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
 
         Stage stage = new Stage();
         stage.setTitle("Car Rental System - Sign Up");
+        stage.getIcons().add(icon);
         stage.setScene(new Scene(root));
         stage.show();
 
@@ -108,7 +111,11 @@ public class LoginController {
     }
 
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+        Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
+
+        alertStage.getIcons().add(icon);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

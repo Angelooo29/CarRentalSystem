@@ -16,12 +16,12 @@
          <children>
             <TextField fx:id="usernameField" layoutX="73.0" layoutY="177.0" maxWidth="350.0" prefHeight="50.0" prefWidth="350.0" style="-fx-border-color: #531F72;">
                <font>
-                  <Font name="Arial" size="16.0" />
+                  <Font name="Arial" size="18.0" />
                </font>
             </TextField>
             <PasswordField fx:id="passwordField" layoutX="73.0" layoutY="269.0" maxWidth="350.0" prefHeight="50.0" prefWidth="350.0" style="-fx-border-color: #531F72;">
                <font>
-                  <Font name="Arial" size="16.0" />
+                  <Font name="Arial" size="18.0" />
                </font>
             </PasswordField>
             <Button fx:id="loginButton" layoutX="170.0" layoutY="356.0" maxWidth="300.0" mnemonicParsing="false" onAction="#onLoginButtonClicked" prefHeight="50.0" prefWidth="155.0" style="-fx-background-color: #531F72;" text="LOG IN" textFill="WHITE">
@@ -39,7 +39,7 @@
                   <Font name="Segoe UI Bold" size="17.0" />
                </font>
             </Label>
-            <Hyperlink layoutX="194.0" layoutY="426.0" onAction="#onCreateAccountClicked" text="Create Account">
+            <Hyperlink layoutX="194.0" layoutY="426.0" onAction="#onCreateAccountClicked" text="Create Account" textFill="#531f72">
                <font>
                   <Font name="Yu Gothic UI Semibold" size="14.0" />
                </font>

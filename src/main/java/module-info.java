@@ -6,6 +6,7 @@ module com.lester.carrentalsystem {
     requires net.synedra.validatorfx;
     requires java.desktop;
     requires fontawesomefx;
+    requires jdk.compiler;
 
 
     opens com.lester.carrentalsystem to javafx.fxml;

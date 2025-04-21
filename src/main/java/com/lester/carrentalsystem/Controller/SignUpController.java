@@ -56,9 +56,9 @@ public class SignUpController {
             try {
                 driversLicenseData = Files.readAllBytes(selectedFile.toPath());
                 driversLicenseImageView.setImage(new Image(selectedFile.toURI().toString()));
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Driver's license uploaded successfully!");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Driver's License uploaded successfully!");
             } catch (Exception e) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Failed to upload driver's license: " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to upload Driver's License: " + e.getMessage());
             }
         }
     }
@@ -73,9 +73,9 @@ public class SignUpController {
             try {
                 profilePictureData = Files.readAllBytes(selectedFile.toPath());
                 profilePictureImageView.setImage(new Image(selectedFile.toURI().toString()));
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Profile picture uploaded successfully!");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Profile Picture uploaded successfully!");
             } catch (Exception e) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Failed to upload profile picture: " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to upload Profile Picture: " + e.getMessage());
             }
         }
     }
@@ -88,30 +88,33 @@ public class SignUpController {
         String password = passwordField.getText();
 
         if (fullName.isEmpty() || username.isEmpty() || password.isEmpty() || contactNumber.isEmpty() || driversLicenseData == null || profilePictureData == null) {
-            showAlert(Alert.AlertType.ERROR, "Error", "All fields must be filled out, including uploading both files!");
+            showAlert(Alert.AlertType.ERROR, "Form Submission Error",
+                    "All fields are mandatory. \n\nPlease provide all the required information, including your Profile Picture and Driver's License, to complete the sign-up process.");
             return;
         }
 
         try (Connection connection = DBConnection.getConnection()) {
-            String sql = "INSERT INTO users_client (Fullname, Username, Password, ContactNumber, `DriversLicense`, `Profile Picture`) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users_client (Fullname, Username, Password, ContactNumber, `DriversLicense`, `ProfilePicture`) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, fullName);
             preparedStatement.setString(2, username);
             preparedStatement.setString(3, password);
             preparedStatement.setString(4, contactNumber);
-            preparedStatement.setBytes(5, driversLicenseData); // Store driver's license binary data
-            preparedStatement.setBytes(6, profilePictureData); // Store profile picture binary data
+            preparedStatement.setBytes(5, driversLicenseData);
+            preparedStatement.setBytes(6, profilePictureData);
 
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Sign-up successful!");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Account Created Successfully!");
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
                     Parent root = loader.load();
+                    Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
 
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
+                    stage.getIcons().add(icon);
                     stage.show();
 
                     Stage currentStage = (Stage) signupButton.getScene().getWindow();
@@ -130,9 +133,11 @@ public class SignUpController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
             Parent root = loader.load();
+            Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
 
             Stage stage = new Stage();
             stage.setTitle("Car Rental System - Log In");
+            stage.getIcons().add(icon);
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -145,6 +150,10 @@ public class SignUpController {
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
+        Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+        Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
+
+        alertStage.getIcons().add(icon);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

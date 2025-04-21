@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #FAFAFA;" stylesheets="@../../Style/Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.EditUserProfileController">
+   <children>
+      <Label layoutX="91.0" layoutY="29.0" text="EDIT USER PROFILE" textFill="#732bb5">
+         <font>
+            <Font name="Segoe UI Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="90.0" prefHeight="35.0" prefWidth="110.0" text="Client ID:" textFill="#732bb5">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="clientIdEdit" disable="true" editable="false" layoutX="145.0" layoutY="90.0" prefHeight="35.0" prefWidth="225.0" styleClass="text-field">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </TextField>
+      <Label layoutX="30.0" layoutY="140.0" prefHeight="35.0" prefWidth="110.0" text="Full Name:" textFill="#732bb5">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fullNameEdit" layoutX="145.0" layoutY="140.0" prefHeight="35.0" prefWidth="225.0" styleClass="text-field">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </TextField>
+      <Label layoutX="30.0" layoutY="190.0" prefHeight="35.0" prefWidth="110.0" text="Username:" textFill="#732bb5">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameEdit" layoutX="145.0" layoutY="190.0" prefHeight="35.0" prefWidth="225.0" styleClass="text-field">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </TextField>
+      <Label layoutX="30.0" layoutY="240.0" prefHeight="35.0" prefWidth="110.0" text="Password:" textFill="#732bb5">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordEdit" layoutX="145.0" layoutY="240.0" prefHeight="35.0" prefWidth="225.0" styleClass="text-field">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </PasswordField>
+      <Label layoutX="30.0" layoutY="290.0" prefHeight="35.0" prefWidth="110.0" text="Contact No.:" textFill="#732bb5">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="contactNumberEdit" layoutX="145.0" layoutY="290.0" prefHeight="35.0" prefWidth="225.0" styleClass="text-field">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="saveChangesEdit" layoutX="125.0" layoutY="345.0" mnemonicParsing="false" onAction="#onSaveChangesEditClicked" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #732bb5;" text="Save Changes" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
