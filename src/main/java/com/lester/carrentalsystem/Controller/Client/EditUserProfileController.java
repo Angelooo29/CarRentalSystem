@@ -43,7 +43,7 @@ public class EditUserProfileController {
     private void initialize() {
         loadUserData();
         saveChangesEdit.setOnMouseEntered(e -> saveChangesEdit.setStyle("-fx-background-color: #9145f5;"));
-        saveChangesEdit.setOnMouseExited(e -> saveChangesEdit.setStyle("-fx-background-color:  #732bb6;"));
+        saveChangesEdit.setOnMouseExited(e -> saveChangesEdit.setStyle("-fx-background-color:  #732bb5;"));
     }
 
     @FXML
