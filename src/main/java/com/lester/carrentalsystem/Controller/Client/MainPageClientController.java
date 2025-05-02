@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -170,7 +172,12 @@ public class MainPageClientController {
     }
 
     @FXML
-    void onAboutButtonClicked(ActionEvent event) {
+    void onAboutButtonClicked(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/About.fxml"));
+        Parent authenticationContent = loader.load();
+
+        contentArea.getChildren().clear();
+        contentArea.getChildren().add(authenticationContent);
         resetButtonStyles();
         buttonAnimation(aboutButton);
         aboutButton.setStyle(ACTIVE_BUTTON_STYLE);
@@ -181,12 +188,22 @@ public class MainPageClientController {
 
     @FXML
     void onContactsButtonClicked(ActionEvent event) {
-        resetButtonStyles();
-        buttonAnimation(contactsButton);
-        contactsButton.setStyle(ACTIVE_BUTTON_STYLE);
-        contactsIcon.getStyleClass().clear();
-        contactsIcon.getStyleClass().add("icon-white");
-        lastActive = new Pair<>(contactsButton, contactsIcon);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/Contacts.fxml"));
+            Parent authenticationContent = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(authenticationContent);
+
+            resetButtonStyles();
+            buttonAnimation(contactsButton);
+            contactsButton.setStyle(ACTIVE_BUTTON_STYLE);
+            contactsIcon.getStyleClass().clear();
+            contactsIcon.getStyleClass().add("icon-white");
+            lastActive = new Pair<>(contactsButton, contactsIcon);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="720.0" prefWidth="830.0" style="-fx-background-color: E8D6FF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.VehiclesController">
    <children>
       <!-- Toyota Rush -->
-      <AnchorPane layoutX="25.0" layoutY="104.0" prefHeight="340.0" prefWidth="250.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="104.0">
+      <AnchorPane layoutX="26.0" layoutY="52.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="52.0">
          <effect>
             <DropShadow>
                <color>
@@ -46,7 +52,7 @@
       </AnchorPane>
 
       <!-- MG ZS -->
-      <AnchorPane layoutX="290.0" layoutY="104.0" prefHeight="340.0" prefWidth="250.0" style="-fx-background-color: white;" AnchorPane.topAnchor="104.0">
+      <AnchorPane layoutX="290.0" layoutY="52.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;" AnchorPane.topAnchor="52.0">
          <effect>
             <DropShadow>
                <color>
@@ -80,7 +86,7 @@
       </AnchorPane>
 
       <!-- Ford Explorer -->
-      <AnchorPane layoutX="555.0" layoutY="104.0" prefHeight="340.0" prefWidth="250.0" style="-fx-background-color: white;" AnchorPane.rightAnchor="24.600000000000023" AnchorPane.topAnchor="104.0">
+      <AnchorPane layoutX="551.0" layoutY="52.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;" AnchorPane.rightAnchor="28.600000000000023" AnchorPane.topAnchor="52.0">
          <effect>
             <DropShadow>
                <color>
@@ -112,5 +118,134 @@
             <Label fx:id="explorerAvailabilityLabel" layoutX="147.0" layoutY="246.0" text="Checking..." />
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="26.0" layoutY="386.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.7789" green="0.7558" blue="0.7558" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="26.0" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/KiaCarnival.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="55.0" layoutY="200.0" text="Kia Cranival">
+               <font>
+                  <Font name="Segoe UI Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="242.0" prefHeight="20.0" prefWidth="63.0" text="₱ 2500">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="rushRentButton1" layoutX="84.0" layoutY="275.0" mnemonicParsing="false" onAction="#onRentButtonClicked" text="Rent Now">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="rushAvailabilityLabel1" layoutX="138.0" layoutY="243.0" text="Checking..." />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="290.0" layoutY="386.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.7789" green="0.7558" blue="0.7558" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="26.0" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/NissanRouge.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="55.0" layoutY="200.0" text="Nissan Rouge">
+               <font>
+                  <Font name="Segoe UI Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="242.0" prefHeight="20.0" prefWidth="63.0" text="₱ 2000">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="rushRentButton11" layoutX="84.0" layoutY="275.0" mnemonicParsing="false" onAction="#onRentButtonClicked" text="Rent Now">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="rushAvailabilityLabel11" layoutX="138.0" layoutY="243.0" text="Checking..." />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="551.0" layoutY="386.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.7789" green="0.7558" blue="0.7558" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="26.0" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/MaxusV80.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="55.0" layoutY="200.0" text="Maxus V80">
+               <font>
+                  <Font name="Segoe UI Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="242.0" prefHeight="20.0" prefWidth="63.0" text="₱ 3000">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="rushRentButton111" layoutX="84.0" layoutY="275.0" mnemonicParsing="false" onAction="#onRentButtonClicked" text="Rent Now">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="rushAvailabilityLabel111" layoutX="138.0" layoutY="243.0" text="Checking..." />
+         </children>
+      </AnchorPane>
+      <ScrollBar layoutX="808.0" layoutY="52.0" orientation="VERTICAL" prefHeight="653.0" prefWidth="14.0" style="-fx-background-color: #bb8cdb; -fx-border-color: #d493f5;">
+         <effect>
+            <Glow />
+         </effect></ScrollBar>
+      <ComboBox layoutX="290.0" layoutY="13.0" prefHeight="10.0" prefWidth="250.0" style="-fx-background-color: #bb8cdb; -fx-border-color: #d493f5;">
+         <effect>
+            <Glow />
+         </effect>
+      </ComboBox>
+      <FontAwesomeIcon glyphName="SEARCH" layoutX="297.0" layoutY="34.0" opacity="0.6" wrappingWidth="23.20001220703125">
+         <selectionFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </selectionFill>
+         <effect>
+            <Glow />
+         </effect>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </FontAwesomeIcon>
    </children>
 </AnchorPane>

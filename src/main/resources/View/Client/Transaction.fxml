@@ -9,12 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.lester.carrentalsystem.Controller.Client.TransactionController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.TransactionController">
    <children>
-      <VBox layoutX="113.0" layoutY="76.0" prefHeight="400.0" prefWidth="247.0" spacing="10.0">
+      <VBox layoutX="112.0" layoutY="38.0" prefHeight="400.0" prefWidth="247.0" spacing="10.0">
          <children>
             <Label text="Car">
                <font>
@@ -22,7 +19,7 @@
                </font>
             </Label>
             <!-- Pre-populated car name (not editable) -->
-            <TextField fx:id="carNameField" editable="false"/>
+            <TextField fx:id="carNameField" editable="false" />
 
             <Label text="Rent Start Date">
                <font>
@@ -68,7 +65,7 @@
                </font>
             </TextField>
 
-            <Button mnemonicParsing="false" text="Confirm Rent" onAction="#onConfirmRentClicked">
+            <Button mnemonicParsing="false" onAction="#onConfirmRentClicked" text="Confirm Rent">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>

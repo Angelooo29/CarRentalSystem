@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="830.0" style="-fx-background-color: E8D6FF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.Vehicles3rdPageController">
+   <children>
+      <AnchorPane layoutX="26.0" layoutY="52.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/ToyotaHiAce.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="52.0" layoutY="200.0" text="Toyota HiAce">
+               <font>
+                  <Font name="Segoe UI Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="242.0" text="₱ 3500">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="138.0" layoutY="243.0" text="Checking..." />
+            <Button layoutX="84.0" layoutY="275.0" mnemonicParsing="false" text="Rent Now">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="290.0" layoutY="52.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/HyundaiH-1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="55.0" layoutY="200.0" text="Hyundai H-1">
+               <font>
+                  <Font name="Segoe UI Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="242.0" text="₱ 3000">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="138.0" layoutY="243.0" text="Checking..." />
+            <Button layoutX="84.0" layoutY="275.0" mnemonicParsing="false" text="Rent Now">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="551.0" layoutY="52.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/NissanNV350Urvan.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="13.0" layoutY="200.0" text="Nissan NV350 Urvan">
+               <font>
+                  <Font name="Segoe UI Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="242.0" text="₱ 3500">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="138.0" layoutY="243.0" text="Checking..." />
+            <Button layoutX="84.0" layoutY="275.0" mnemonicParsing="false" text="Rent Now">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="26.0" layoutY="386.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="147.0" fitWidth="240.0" layoutX="8.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/NissanNavara.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="47.0" layoutY="199.0" text="Nissan Navara">
+               <font>
+                  <Font name="Segoe UI Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="242.0" text="₱ 2500">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="138.0" layoutY="243.0" text="Checking..." />
+            <Button layoutX="84.0" layoutY="275.0" mnemonicParsing="false" text="Rent Now">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="290.0" layoutY="386.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/FordRanger.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="55.0" layoutY="200.0" text="Ford Ranger">
+               <font>
+                  <Font name="Segoe UI Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="242.0" text="₱ 2500">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="138.0" layoutY="243.0" text="Checking..." />
+            <Button layoutX="84.0" layoutY="275.0" mnemonicParsing="false" text="Rent Now">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="551.0" layoutY="386.0" prefHeight="320.0" prefWidth="250.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="220.0" layoutX="15.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/IsuzuD-MAX.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="53.0" layoutY="199.0" text="Isuzu D-MAX">
+               <font>
+                  <Font name="Segoe UI Semibold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="242.0" text="₱ 2500">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="138.0" layoutY="243.0" text="Checking..." />
+            <Button layoutX="84.0" layoutY="275.0" mnemonicParsing="false" text="Rent Now">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <ScrollBar layoutX="808.0" layoutY="52.0" orientation="VERTICAL" prefHeight="653.0" prefWidth="14.0" style="-fx-background-color: #d493f5; -fx-border-color: #d493f5;">
+         <effect>
+            <Glow />
+         </effect></ScrollBar>
+   </children>
+</AnchorPane>
