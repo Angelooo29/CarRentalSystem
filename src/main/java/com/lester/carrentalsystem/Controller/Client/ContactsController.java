@@ -1,5 +1,7 @@
 package com.lester.carrentalsystem.Controller.Client;
 
-public class ContactsController {
+import javafx.scene.image.ImageView;
 
+public class ContactsController {
+    public ImageView contactImage;
 }
