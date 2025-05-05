@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="720.0" prefWidth="830.0" style="-fx-background-color: E8D6FF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.SettingsController">
@@ -160,8 +161,8 @@
             </DropShadow>
          </effect>
          <children>
-            <ImageView fx:id="vehicleImage" fitHeight="250.0" fitWidth="250.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="vehicleNameLabel" layoutX="76.0" layoutY="305.0" prefHeight="30.0" text="FORD EXPLORER" textFill="#732bb5">
+            <ImageView fx:id="vehicleImage" fitHeight="200.0" fitWidth="250.0" layoutX="30.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="vehicleNameLabel" alignment="CENTER" layoutX="30.0" layoutY="278.0" prefHeight="30.0" prefWidth="250.0" text="FORD EXPLORER" textAlignment="CENTER" textFill="#732bb5">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
@@ -170,7 +171,7 @@
                <children>
                   <Label prefHeight="30.0" text="Rent Price: " textFill="#732bb5">
                      <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
+                        <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Label>
                   <Label fx:id="priceLabel" prefHeight="30.0" text="Price here" textFill="#732bb5">
@@ -183,7 +184,7 @@
                   </Label>
                   <Label prefHeight="30.0" text="Rent Start Date: " textFill="#732bb5">
                      <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
+                        <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Label>
                   <Label fx:id="startDateLabel" prefHeight="30.0" text="Start Date here" textFill="#732bb5">
@@ -196,10 +197,10 @@
                   </Label>
                   <Label prefHeight="30.0" text="Rent End Date: " textFill="#732bb5">
                      <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
+                        <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="EndDateLabel" prefHeight="30.0" text="End Date here" textFill="#732bb5">
+                  <Label fx:id="endDateLabel" prefHeight="30.0" text="End Date here" textFill="#732bb5">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
@@ -209,7 +210,7 @@
                   </Label>
                   <Label prefHeight="30.0" text="Pick-Off Location: " textFill="#732bb5">
                      <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
+                        <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Label>
                   <Label fx:id="locationLabel" prefHeight="30.0" text="Location here" textFill="#732bb5">
@@ -222,7 +223,7 @@
                   </Label>
                   <Label prefHeight="30.0" text="Payment Method: " textFill="#732bb5">
                      <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
+                        <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Label>
                   <Label fx:id="paymentLabel" prefHeight="30.0" text="Payment here" textFill="#732bb5">
@@ -237,5 +238,6 @@
             </VBox>
          </children>
       </AnchorPane>
+      <Rectangle fx:id="overlayEffect" arcHeight="5.0" arcWidth="5.0" fill="#732bb5" height="720.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" visible="false" width="830.0" />
     </children>
 </AnchorPane>

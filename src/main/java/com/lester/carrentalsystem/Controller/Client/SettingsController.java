@@ -15,15 +15,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.sql.*;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class SettingsController {
@@ -44,13 +48,15 @@ public class SettingsController {
     public Label startDateLabel;
 
     @FXML
-    public Label EndDateLabel;
+    public Label endDateLabel;
 
     @FXML
     public Label locationLabel;
 
     @FXML
     public Label paymentLabel;
+
+    public Rectangle overlayEffect;
 
     @FXML
     private TextField clientIdField;
@@ -185,42 +191,85 @@ public class SettingsController {
             stage.setTitle("Car Rental System - Edit User Profile");
             stage.setScene(new Scene(root));
             stage.getIcons().add(icon);
+
+            overlayEffect.setVisible(true);
+            stage.setOnHidden(event -> overlayEffect.setVisible(false));
+
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    class RentalDetails {
+        int carId;
+        String carName, rentPrice, startDate, endDate, location, paymentMethod;
+
+        public RentalDetails(int carId, String carName, String rentPrice, String startDate, String endDate, String location, String paymentMethod) {
+            this.carId = carId;
+            this.carName = carName;
+            this.rentPrice = rentPrice;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.location = location;
+            this.paymentMethod = paymentMethod;
+        }
+    }
+
     private void rentalHistory() {
         int clientId = ClientSession.getInstance().getClientId();
         ObservableList<String> rentHistory = FXCollections.observableArrayList();
-        Map<String, Integer> rentDateToCarIdMap = new HashMap<>();
+        Map<String, RentalDetails> rentalDetailsMap = new HashMap<>();
+
+        vehicleNameLabel.setText("");
+        priceLabel.setText("");
+        startDateLabel.setText("");
+        endDateLabel.setText("");
+        locationLabel.setText("");
+        paymentLabel.setText("");
 
         try (Connection connection = DBConnection.getConnection()) {
-            String sql = "SELECT CarId, RentStartDate, RentEndDate, PickOffLocation, PaymentMethod, Price, TransactionDate FROM transaction WHERE ClientId = ?";
+            String sql = "SELECT t.CarId, t.RentStartDate, t.RentEndDate, t.PickOffLocation, t.PaymentMethod, t.Price, c.CarName FROM transaction t JOIN cars c ON t.CarId = c.CarId WHERE t.ClientId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, clientId);
             ResultSet resultSet = statement.executeQuery();
 
             SimpleDateFormat formatter = new SimpleDateFormat("MMM. dd, yyyy");
-            while (resultSet.next()) {
-                int carId = resultSet.getInt("CarId");
-                String formattedDate = formatter.format(resultSet.getDate("RentStartDate"));
+            NumberFormat pesoFormat = NumberFormat.getCurrencyInstance(new Locale("en", "PH"));
 
-                rentHistory.add(formattedDate);
-                rentDateToCarIdMap.put(formattedDate, carId);
+            while (resultSet.next()) {
+                String formattedStartDate = formatter.format(resultSet.getDate("RentStartDate"));
+                String formattedEndDate = formatter.format(resultSet.getDate("RentEndDate"));
+                String formattedPrice = pesoFormat.format(resultSet.getInt("Price"));
+
+                RentalDetails details = new RentalDetails(
+                        resultSet.getInt("CarId"),
+                        resultSet.getString("CarName"),
+                        formattedPrice,
+                        formattedStartDate,
+                        formattedEndDate,
+                        resultSet.getString("PickOffLocation"),
+                        resultSet.getString("PaymentMethod")
+                );
+
+                rentHistory.add(formattedStartDate);
+                rentalDetailsMap.put(formattedStartDate, details);
             }
 
             listView.setItems(rentHistory);
             listView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
                 if (newValue != null) {
-                    int selectedCarId = rentDateToCarIdMap.get(newValue);
-                    String imagePath = "/images/car_" + selectedCarId + ".png";
-                    Image image = new Image(getClass().getResource(imagePath).toExternalForm());
-                    vehicleImage.setImage(image);
+                    RentalDetails selectedDetails = rentalDetailsMap.get(newValue);
+                    String imagePath = "/images/car_" + selectedDetails.carId + ".png";
+                    vehicleImage.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
+                    vehicleNameLabel.setText(selectedDetails.carName);
+                    priceLabel.setText(selectedDetails.rentPrice);
+                    startDateLabel.setText(selectedDetails.startDate);
+                    endDateLabel.setText(selectedDetails.endDate);
+                    locationLabel.setText(selectedDetails.location);
+                    paymentLabel.setText(selectedDetails.paymentMethod);
                 }
             });
-
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to load client data: " + e.getMessage());
         }

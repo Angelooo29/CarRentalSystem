@@ -1,0 +1,1 @@
+SELECT * FROM crs_db.transaction;

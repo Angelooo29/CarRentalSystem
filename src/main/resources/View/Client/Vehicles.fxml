@@ -223,7 +223,7 @@
             <Glow />
          </effect>
       </ComboBox>
-      <FontAwesomeIcon glyphName="SEARCH" layoutX="297.0" layoutY="34.0" opacity="0.6" wrappingWidth="23.20001220703125">
+      <FontAwesomeIcon glyphName="SEARCH" layoutX="297.0" layoutY="30.0" opacity="0.6" wrappingWidth="23.20001220703125">
          <selectionFill>
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                <stops>
