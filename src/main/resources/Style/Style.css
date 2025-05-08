@@ -35,3 +35,13 @@
     -fx-background-color: #d9bcff;
     -fx-text-fill: #732bb5;
 }
+
+loginPane {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
+
+signupPane {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}

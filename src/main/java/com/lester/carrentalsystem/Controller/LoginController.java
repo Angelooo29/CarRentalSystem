@@ -20,6 +20,7 @@ import com.lester.carrentalsystem.Infrastructure.Data.DBConnection;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class LoginController {
 
@@ -81,7 +82,7 @@ public class LoginController {
             Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
 
             Stage stage = new Stage();
-            stage.setTitle("Car Rental System");
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.getIcons().add(icon);
             stage.setScene(new Scene(root));
             stage.show();
@@ -121,4 +122,21 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    @FXML
+    private void onCloseClicked() {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void onMinimizeClicked() {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
+    }
+    @FXML
+    private Button minimizeButton;
+
+    @FXML
+    private Button closeButton;
+
 }

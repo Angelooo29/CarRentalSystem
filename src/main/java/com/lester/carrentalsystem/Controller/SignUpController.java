@@ -14,12 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javafx.stage.StageStyle;
 
 public class SignUpController {
     @FXML
@@ -113,6 +113,7 @@ public class SignUpController {
                     Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
 
                     Stage stage = new Stage();
+                    stage.initStyle(StageStyle.UNDECORATED);
                     stage.setScene(new Scene(root));
                     stage.getIcons().add(icon);
                     stage.show();
@@ -136,6 +137,7 @@ public class SignUpController {
             Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
 
             Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Car Rental System - Log In");
             stage.getIcons().add(icon);
             stage.setScene(new Scene(root));
