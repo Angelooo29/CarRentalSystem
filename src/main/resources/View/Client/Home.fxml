@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="photoArea" prefHeight="720.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.HomeController">
+<AnchorPane fx:id="photoArea" minHeight="714.0" minWidth="827.0" prefHeight="714.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.HomeController">
 
    <ImageView fx:id="imageView" fitHeight="720.0" fitWidth="830.0" layoutX="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 
@@ -36,5 +36,15 @@
 
    <HBox fx:id="dotsContainer" alignment="center" layoutX="0.0" layoutY="680.0" prefWidth="830.0" spacing="10" AnchorPane.bottomAnchor="70.0">
    </HBox>
+   <Button fx:id="closeButton" layoutX="800.0" layoutY="3.0" mnemonicParsing="false" style="-fx-background-color: #a10101;" stylesheets="@../../Style/Style.css" text="X" textFill="WHITE">
+      <font>
+         <Font name="Segoe UI Bold" size="12.0" />
+      </font>
+   </Button>
+   <Button fx:id="minimizeButton" layoutX="776.0" layoutY="3.0" mnemonicParsing="false" stylesheets="@../../Style/Style.css" text="_" textFill="#531f72">
+      <font>
+         <Font name="Segoe UI Bold" size="12.0" />
+      </font>
+   </Button>
 
 </AnchorPane>

@@ -6,14 +6,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -22,6 +20,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SignUpController {
+    @FXML
+    private Button closeButton;
+    @FXML
+    private Button minimizeButton;
+    @FXML
+    private CheckBox showPasswordCheckbox;
+    @FXML
+    private TextField visiblePasswordField;
     @FXML
     private TextField fullNameField;
     @FXML
@@ -42,8 +48,47 @@ public class SignUpController {
     private byte[] driversLicenseData;
 
     public void initialize() {
+        closeButton.setOnAction(event -> {
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.close();
+        });
+
+        closeButton.setOnMouseEntered(e -> closeButton.setStyle("-fx-background-color: #ff3535;"));
+        closeButton.setOnMouseExited(e -> closeButton.setStyle("-fx-background-color:  #a10101;"));
+
+        minimizeButton.setOnAction(event -> {
+            Stage stage = (Stage) minimizeButton.getScene().getWindow();
+            stage.setIconified(true);
+        });
+
         signupButton.setOnMouseEntered(e -> signupButton.setStyle("-fx-background-color: #9145f5;"));
         signupButton.setOnMouseExited(e -> signupButton.setStyle("-fx-background-color:  #732bb5;"));
+
+        showPasswordCheckbox.setOnAction(event -> {
+            if (showPasswordCheckbox.isSelected()) {
+                visiblePasswordField.setText(passwordField.getText());
+                visiblePasswordField.setVisible(true);
+                passwordField.setVisible(false);
+            } else {
+                passwordField.setText(visiblePasswordField.getText());
+                passwordField.setVisible(true);
+                visiblePasswordField.setVisible(false);
+            }
+        });
+
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!showPasswordCheckbox.isSelected()) {
+                visiblePasswordField.setText(newValue);
+            }
+        });
+
+        visiblePasswordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (showPasswordCheckbox.isSelected()) {
+                passwordField.setText(newValue);
+            }
+        });
+
+        visiblePasswordField.setVisible(false);
     }
 
     @FXML
@@ -115,6 +160,7 @@ public class SignUpController {
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.getIcons().add(icon);
+                    stage.initStyle(StageStyle.UNDECORATED);
                     stage.show();
 
                     Stage currentStage = (Stage) signupButton.getScene().getWindow();
@@ -138,6 +184,7 @@ public class SignUpController {
             Stage stage = new Stage();
             stage.setTitle("Car Rental System - Log In");
             stage.getIcons().add(icon);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root));
             stage.show();
 

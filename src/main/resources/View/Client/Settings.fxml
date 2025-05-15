@@ -10,14 +10,17 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="830.0" style="-fx-background-color: E8D6FF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.SettingsController">
+<AnchorPane minHeight="714.0" minWidth="827.0" prefHeight="714.0" prefWidth="827.0" style="-fx-background-color: E8D6FF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.SettingsController">
     <children>
-      <AnchorPane layoutX="25.0" layoutY="25.0" prefHeight="280.0" prefWidth="320.0" style="-fx-background-color: FAFAFA; -fx-background-radius: 20; -fx-border-radius: 20;">
+      <AnchorPane layoutX="25.0" layoutY="30.0" prefHeight="280.0" prefWidth="320.0" style="-fx-background-color: FAFAFA; -fx-background-radius: 20; -fx-border-radius: 20;">
          <children>
             <Label layoutX="80.0" layoutY="14.0" text="USER PROFILE" textFill="#732bb5">
                <font>
@@ -92,7 +95,7 @@
             </DropShadow>
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="25.0" layoutY="330.0" prefHeight="365.0" prefWidth="210.0" style="-fx-background-color: FAFAFA; -fx-background-radius: 20; -fx-border-radius: 20;">
+      <AnchorPane layoutX="25.0" layoutY="335.0" prefHeight="365.0" prefWidth="210.0" style="-fx-background-color: FAFAFA; -fx-background-radius: 20; -fx-border-radius: 20;">
          <effect>
             <DropShadow>
                <color>
@@ -109,7 +112,7 @@
             <ListView fx:id="listView" fixedCellSize="30.0" layoutX="20.0" layoutY="60.0" prefHeight="285.0" prefWidth="170.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="370.0" layoutY="25.0" prefHeight="280.0" prefWidth="435.0" style="-fx-background-color: FAFAFA; -fx-background-radius: 20; -fx-border-radius: 20;">
+      <AnchorPane layoutX="370.0" layoutY="30.0" prefHeight="280.0" prefWidth="435.0" style="-fx-background-color: FAFAFA; -fx-background-radius: 20; -fx-border-radius: 20;">
          <effect>
             <DropShadow>
                <color>
@@ -152,7 +155,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="260.0" layoutY="330.0" prefHeight="365.0" prefWidth="545.0" style="-fx-background-color: FAFAFA; -fx-background-radius: 20; -fx-border-radius: 20;">
+      <AnchorPane layoutX="260.0" layoutY="335.0" prefHeight="365.0" prefWidth="545.0" style="-fx-background-color: FAFAFA; -fx-background-radius: 20; -fx-border-radius: 20;">
          <effect>
             <DropShadow>
                <color>
@@ -161,15 +164,15 @@
             </DropShadow>
          </effect>
          <children>
-            <ImageView fx:id="vehicleImage" fitHeight="200.0" fitWidth="250.0" layoutX="30.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="vehicleNameLabel" alignment="CENTER" layoutX="30.0" layoutY="278.0" prefHeight="30.0" prefWidth="250.0" text="FORD EXPLORER" textAlignment="CENTER" textFill="#732bb5">
+            <ImageView fx:id="vehicleImage" fitHeight="200.0" fitWidth="250.0" layoutX="30.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="vehicleNameLabel" alignment="CENTER" layoutX="30.0" layoutY="270.0" prefHeight="30.0" prefWidth="250.0" text="FORD EXPLORER" textAlignment="CENTER" textFill="#732bb5">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
             </Label>
-            <VBox layoutX="310.0" layoutY="30.0" prefHeight="305.0" prefWidth="205.0">
+            <VBox layoutX="345.0" layoutY="20.0" prefHeight="305.0" prefWidth="170.0">
                <children>
-                  <Label prefHeight="30.0" text="Rent Price: " textFill="#732bb5">
+                  <Label prefHeight="30.0" text="Rent Total Amount: " textFill="#732bb5">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
@@ -208,7 +211,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <Label prefHeight="30.0" text="Pick-Off Location: " textFill="#732bb5">
+                  <Label prefHeight="30.0" text="Pickup Location: " textFill="#732bb5">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
@@ -236,8 +239,44 @@
                   </Label>
                </children>
             </VBox>
+            <GridPane layoutX="30.0" layoutY="310.0" prefHeight="30.0" prefWidth="250.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="161.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="89.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="seatingLabel" prefHeight="40.0" prefWidth="166.0" text="Seating Cap: 3 seats" textFill="#732bb5" GridPane.halignment="CENTER">
+                     <font>
+                        <Font name="Segoe UI Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="colorLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="97.0" text="Color: Grey" textFill="#732bb5" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                     <font>
+                        <Font name="Segoe UI Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Button fx:id="cancelTransactionButton" disable="true" layoutX="396.0" layoutY="329.0" mnemonicParsing="false" style="-fx-background-color: #c80000;" text="Request Cancellation" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Segoe UI Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <Rectangle fx:id="overlayEffect" arcHeight="5.0" arcWidth="5.0" fill="#732bb5" height="720.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" visible="false" width="830.0" />
+      <Button fx:id="closeButton" layoutX="800.0" layoutY="3.0" mnemonicParsing="false" style="-fx-background-color: #a10101;" stylesheets="@../../Style/Style.css" text="X" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="minimizeButton" layoutX="776.0" layoutY="3.0" mnemonicParsing="false" stylesheets="@../../Style/Style.css" text="_" textFill="#531f72">
+         <font>
+            <Font name="Segoe UI Bold" size="12.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

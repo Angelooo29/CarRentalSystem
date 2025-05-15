@@ -154,7 +154,7 @@ public class MainPageClientController {
     @FXML
     void onVehiclesButtonClicked(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/Vehicles.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/VehiclesList.fxml"));
             Parent authenticationContent = loader.load();
 
             contentArea.getChildren().clear();

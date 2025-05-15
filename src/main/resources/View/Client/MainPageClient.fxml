@@ -10,32 +10,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../Style/Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.MainPageClientController">
+<AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-border-color: #732bb5; -fx-border-width: 3;" stylesheets="@../../Style/Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.MainPageClientController">
    <children>
-      <VBox minWidth="250.0" prefHeight="720.0" prefWidth="250.0" spacing="20.0" style="-fx-background-color: white;">
+      <VBox alignment="CENTER" layoutX="3.0" layoutY="3.0" minWidth="250.0" prefHeight="714.0" prefWidth="250.0" spacing="20.0" style="-fx-background-color: white;">
          <children>
             <ImageView fitHeight="160.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Images/Logo.png" />
                </image>
                <VBox.margin>
-                  <Insets left="25.0" top="20.0" />
+                  <Insets />
                </VBox.margin>
             </ImageView>
-            <Label fx:id="welcomeLabel" alignment="CENTER" prefWidth="250.0" text="Welcome," textFill="#732bb5">
+            <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="250.0" text="Welcome," textFill="#732bb5">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets left="-10.0" right="10.0" />
+                  <Insets />
                </VBox.margin>
             </Label>
-            <Label fx:id="fullName" alignment="CENTER" layoutX="30.0" layoutY="200.0" prefWidth="250.0" text="Fullname" textFill="#732bb5">
+            <Label fx:id="fullName" alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="200.0" prefWidth="250.0" text="Fullname" textFill="#732bb5">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets left="-10.0" right="10.0" top="-15.0" />
+                  <Insets top="-15.0" />
                </VBox.margin>
             </Label>
             <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHomeButtonClicked" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: white;" text=" Home" textFill="#732bb5">
@@ -82,7 +82,7 @@
                   <FontAwesomeIcon fx:id="contactsIcon" fill="#732bb5" glyphName="PHONE" />
                </graphic>
             </Button>
-            <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClicked" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: white;" text=" Settings" textFill="#732bb5">
+            <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClicked" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: white;" text=" Account" textFill="#732bb5">
                <font>
                   <Font name="Segoe UI" size="21.0" />
                </font>
@@ -90,7 +90,7 @@
                   <Insets />
                </VBox.margin>
                <graphic>
-                  <FontAwesomeIcon fx:id="settingsIcon" fill="#732bb5" glyphName="GEAR" />
+                  <FontAwesomeIcon fx:id="settingsIcon" fill="#732bb5" glyphName="USER" />
                </graphic>
             </Button>
             <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutButtonClicked" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: white;" text=" Log Out" textFill="#732bb5">
@@ -104,11 +104,13 @@
                   <FontAwesomeIcon fx:id="logoutIcon" fill="#732bb5" glyphName="SIGN_OUT" />
                </graphic>
             </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="© CarGo Vehicle Rental Company" textFill="#732bb5">
+               <font>
+                  <Font name="Segoe UI" size="11.0" />
+               </font>
+            </Label>
          </children>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
       </VBox>
-      <AnchorPane fx:id="contentArea" layoutX="259.0" maxHeight="720.0" maxWidth="830.0" minHeight="720.0" minWidth="830.0" prefHeight="720.0" prefWidth="830.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="contentArea" layoutX="250.0" layoutY="3.0" maxHeight="720.0" maxWidth="840.0" minHeight="7.0" minWidth="827.0" prefHeight="714.0" prefWidth="827.0" style="-fx-background-color: #E8D6FF;" />
    </children>
 </AnchorPane>

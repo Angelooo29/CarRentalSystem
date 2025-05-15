@@ -35,3 +35,24 @@
     -fx-background-color: #d9bcff;
     -fx-text-fill: #732bb5;
 }
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #732bb5;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #732bb5;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: white;
+    -fx-text-fill: #732bb5;
+    -fx-font-size: 11px;
+    -fx-border-color: transparent;
+}
+
+.combo-box .list-cell:selected {
+    -fx-background-color: white;
+    -fx-text-fill: #732bb5;
+}

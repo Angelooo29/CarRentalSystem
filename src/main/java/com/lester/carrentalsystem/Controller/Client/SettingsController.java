@@ -19,16 +19,19 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 public class SettingsController {
 
@@ -57,6 +60,18 @@ public class SettingsController {
     public Label paymentLabel;
 
     public Rectangle overlayEffect;
+
+    @FXML
+    public Label seatingLabel;
+
+    @FXML
+    public Label colorLabel;
+    @FXML
+    private Button cancelTransactionButton;
+    @FXML
+    private Button closeButton;
+    @FXML
+    private Button minimizeButton;
 
     @FXML
     private TextField clientIdField;
@@ -89,12 +104,30 @@ public class SettingsController {
     private byte[] driversLicenseData;
 
     public void initialize() {
+        closeButton.setOnAction(event -> {
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.close();
+        });
+
+        closeButton.setOnMouseEntered(e -> closeButton.setStyle("-fx-background-color: #ff3535;"));
+        closeButton.setOnMouseExited(e -> closeButton.setStyle("-fx-background-color:  #a10101;"));
+
+        minimizeButton.setOnAction(event -> {
+            Stage stage = (Stage) minimizeButton.getScene().getWindow();
+            stage.setIconified(true);
+        });
+
         loadClientData();
         rentalHistory();
         saveButton.setOnMouseEntered(e -> saveButton.setStyle("-fx-background-color: #9145f5;"));
         saveButton.setOnMouseExited(e -> saveButton.setStyle("-fx-background-color:  #732bb5;"));
         editButton.setOnMouseEntered(e -> editButton.setStyle("-fx-background-color: #9145f5;"));
         editButton.setOnMouseExited(e -> editButton.setStyle("-fx-background-color:  #732bb5;"));
+
+        cancelTransactionButton.setOnMouseEntered(e -> cancelTransactionButton.setStyle("-fx-background-color: #ff3535;"));
+        cancelTransactionButton.setOnMouseExited(e -> cancelTransactionButton.setStyle("-fx-background-color:   #c80000;"));
+
+        cancelTransactionButton.setOnAction(event -> onCancelTransactionButtonClicked());
     }
 
     private void loadClientData() {
@@ -190,11 +223,10 @@ public class SettingsController {
             Stage stage = new Stage();
             stage.setTitle("Car Rental System - Edit User Profile");
             stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.getIcons().add(icon);
-
             overlayEffect.setVisible(true);
             stage.setOnHidden(event -> overlayEffect.setVisible(false));
-
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -202,12 +234,17 @@ public class SettingsController {
     }
 
     class RentalDetails {
-        int carId;
-        String carName, rentPrice, startDate, endDate, location, paymentMethod;
+        int carId, transactionId, seating;
+        String carMake, carModel, carColor, rentPrice, startDate, endDate, location, paymentMethod;
 
-        public RentalDetails(int carId, String carName, String rentPrice, String startDate, String endDate, String location, String paymentMethod) {
+        public RentalDetails(int carId, int transactionId, String carMake, String carModel, String carColor, int seating, String rentPrice,
+                             String startDate, String endDate, String location, String paymentMethod) {
             this.carId = carId;
-            this.carName = carName;
+            this.transactionId = transactionId;
+            this.carMake = carMake;
+            this.carModel = carModel;
+            this.carColor = carColor;
+            this.seating = seating;
             this.rentPrice = rentPrice;
             this.startDate = startDate;
             this.endDate = endDate;
@@ -222,6 +259,8 @@ public class SettingsController {
         Map<String, RentalDetails> rentalDetailsMap = new HashMap<>();
 
         vehicleNameLabel.setText("");
+        seatingLabel.setText("");
+        colorLabel.setText("");
         priceLabel.setText("");
         startDateLabel.setText("");
         endDateLabel.setText("");
@@ -229,22 +268,27 @@ public class SettingsController {
         paymentLabel.setText("");
 
         try (Connection connection = DBConnection.getConnection()) {
-            String sql = "SELECT t.CarId, t.RentStartDate, t.RentEndDate, t.PickOffLocation, t.PaymentMethod, t.Price, c.CarName FROM transaction t JOIN cars c ON t.CarId = c.CarId WHERE t.ClientId = ?";
+            String sql = "SELECT t.TransactionId, t.CarId, t.CarColor, t.RentStartDate, t.RentEndDate, t.PickOffLocation, t.PaymentMethod, t.Price, c.CarMake," +
+                    "c.CarModel, c.Seating FROM transaction t JOIN cars c ON t.CarId = c.CarId WHERE t.ClientId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, clientId);
             ResultSet resultSet = statement.executeQuery();
 
             SimpleDateFormat formatter = new SimpleDateFormat("MMM. dd, yyyy");
-            NumberFormat pesoFormat = NumberFormat.getCurrencyInstance(new Locale("en", "PH"));
+            DecimalFormat df = new DecimalFormat("#,###.00");
 
             while (resultSet.next()) {
                 String formattedStartDate = formatter.format(resultSet.getDate("RentStartDate"));
                 String formattedEndDate = formatter.format(resultSet.getDate("RentEndDate"));
-                String formattedPrice = pesoFormat.format(resultSet.getInt("Price"));
+                String formattedPrice = df.format(resultSet.getInt("Price"));
 
                 RentalDetails details = new RentalDetails(
                         resultSet.getInt("CarId"),
-                        resultSet.getString("CarName"),
+                        resultSet.getInt("TransactionId"),
+                        resultSet.getString("CarMake"),
+                        resultSet.getString("CarModel"),
+                        resultSet.getString("CarColor"),
+                        resultSet.getInt("Seating"),
                         formattedPrice,
                         formattedStartDate,
                         formattedEndDate,
@@ -259,19 +303,46 @@ public class SettingsController {
             listView.setItems(rentHistory);
             listView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
                 if (newValue != null) {
+                    cancelTransactionButton.setVisible(true);
+                    cancelTransactionButton.setDisable(false);
                     RentalDetails selectedDetails = rentalDetailsMap.get(newValue);
+
+                    ClientSession.setSelectedTransactionId(selectedDetails.transactionId);
+
                     String imagePath = "/images/car_" + selectedDetails.carId + ".png";
                     vehicleImage.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
-                    vehicleNameLabel.setText(selectedDetails.carName);
-                    priceLabel.setText(selectedDetails.rentPrice);
+                    vehicleNameLabel.setText(selectedDetails.carMake + " " + selectedDetails.carModel);
+                    priceLabel.setText("₱ " + selectedDetails.rentPrice);
                     startDateLabel.setText(selectedDetails.startDate);
                     endDateLabel.setText(selectedDetails.endDate);
                     locationLabel.setText(selectedDetails.location);
                     paymentLabel.setText(selectedDetails.paymentMethod);
+                    seatingLabel.setText("Seating Cap: " + selectedDetails.seating + " seats");
+                    colorLabel.setText("Color: " + selectedDetails.carColor);
                 }
             });
+
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to load client data: " + e.getMessage());
+        }
+    }
+
+    public void onCancelTransactionButtonClicked() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Client/CancelTransaction.fxml"));
+            Parent root = loader.load();
+            Image icon = new Image(getClass().getResource("/Images/Logo.png").toString());
+
+            Stage stage = new Stage();
+            stage.setTitle("Car Rental System - Cancellation Request");
+            stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.getIcons().add(icon);
+            overlayEffect.setVisible(true);
+            stage.setOnHidden(event -> overlayEffect.setVisible(false));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

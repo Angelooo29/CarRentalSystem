@@ -22,6 +22,8 @@ import java.sql.SQLException;
 public class EditUserProfileController {
 
     @FXML
+    private Button cancelButton;
+    @FXML
     private TextField clientIdEdit;
 
     @FXML
@@ -41,6 +43,10 @@ public class EditUserProfileController {
 
     @FXML
     private void initialize() {
+        cancelButton.setOnAction(event -> {
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.close();
+        });
         loadUserData();
         saveChangesEdit.setOnMouseEntered(e -> saveChangesEdit.setStyle("-fx-background-color: #9145f5;"));
         saveChangesEdit.setOnMouseExited(e -> saveChangesEdit.setStyle("-fx-background-color:  #732bb5;"));

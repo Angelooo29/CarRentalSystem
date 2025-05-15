@@ -3,6 +3,16 @@ package com.lester.carrentalsystem.Model;
 public class ClientSession {
     private static ClientSession instance;
 
+    private static int selectedTransactionId;
+
+    public static int getSelectedTransactionId() {
+        return selectedTransactionId;
+    }
+
+    public static void setSelectedTransactionId(int transactionId) {
+        selectedTransactionId = transactionId;
+    }
+
     private int clientId;
     private String fullName;
     private String username;

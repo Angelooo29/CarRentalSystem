@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="vehicleCard" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="318.75" prefWidth="255.0" spacing="10" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.VehicleCardController">
+
+    <ImageView fx:id="vehicleImage" fitHeight="190.0" fitWidth="220.0" preserveRatio="true" />
+    <Label fx:id="priceLabel" text="Price: $0" textFill="#732bb5">
+      <font>
+         <Font name="Segoe UI Bold" size="14.0" />
+      </font>
+   </Label>
+    <Label fx:id="availabilityLabel" text="Available" textFill="#732bb5">
+      <font>
+         <Font name="Segoe UI Bold" size="14.0" />
+      </font></Label>
+    <Button fx:id="rentButton" style="-fx-background-color: #732bb5;" text="Rent Now" textFill="WHITE">
+      <font>
+         <Font name="Segoe UI Bold" size="14.0" />
+      </font></Button>
+
+</VBox>

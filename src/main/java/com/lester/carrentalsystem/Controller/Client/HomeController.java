@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -15,6 +16,10 @@ import java.util.List;
 
 public class HomeController {
 
+    @FXML
+    private Button closeButton;
+    @FXML
+    private Button minimizeButton;
     @FXML
     private ImageView imageView;
 
@@ -30,6 +35,19 @@ public class HomeController {
     private Timeline autoSlide;
 
     public void initialize() {
+        closeButton.setOnAction(event -> {
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.close();
+        });
+
+        closeButton.setOnMouseEntered(e -> closeButton.setStyle("-fx-background-color: #ff3535;"));
+        closeButton.setOnMouseExited(e -> closeButton.setStyle("-fx-background-color:  #a10101;"));
+
+        minimizeButton.setOnAction(event -> {
+            Stage stage = (Stage) minimizeButton.getScene().getWindow();
+            stage.setIconified(true);
+        });
+
         imageView.setFitWidth(830);
         imageView.setFitHeight(720);
         imageView.setPreserveRatio(false);

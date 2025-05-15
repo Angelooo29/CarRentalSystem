@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #FAFAFA;" stylesheets="@../../Style/Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.EditUserProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #FAFAFA; -fx-border-color: #732bb5; -fx-border-width: 3;" stylesheets="@../../Style/Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lester.carrentalsystem.Controller.Client.EditUserProfileController">
    <children>
       <Label layoutX="91.0" layoutY="29.0" text="EDIT USER PROFILE" textFill="#732bb5">
          <font>
@@ -64,7 +64,12 @@
             <Font name="Segoe UI" size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="saveChangesEdit" layoutX="125.0" layoutY="345.0" mnemonicParsing="false" onAction="#onSaveChangesEditClicked" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #732bb5;" text="Save Changes" textFill="WHITE">
+      <Button fx:id="saveChangesEdit" layoutX="80.0" layoutY="350.0" mnemonicParsing="false" onAction="#onSaveChangesEditClicked" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #732bb5;" text="Save Changes" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelButton" layoutX="224.0" layoutY="350.0" mnemonicParsing="false" onAction="#onSaveChangesEditClicked" prefHeight="30.0" prefWidth="100.0" text="Cancel" textFill="#732bb5">
          <font>
             <Font name="Segoe UI Bold" size="16.0" />
          </font>

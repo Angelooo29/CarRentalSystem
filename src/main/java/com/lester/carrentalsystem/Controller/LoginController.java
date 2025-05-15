@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import java.io.IOException;
@@ -19,25 +16,82 @@ import java.sql.SQLException;
 import com.lester.carrentalsystem.Infrastructure.Data.DBConnection;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class LoginController {
 
     @FXML
+    private Button closeButton;
+    @FXML
+    private Button minimizeButton;
+    @FXML
+    private CheckBox showPasswordCheckbox;
+    @FXML
+    private TextField visiblePasswordField;
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private VBox vbox;
+    @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private Button loginButton;
 
     public void initialize() {
+        closeButton.setOnAction(event -> {
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.close();
+        });
+
+        closeButton.setOnMouseEntered(e -> closeButton.setStyle("-fx-background-color: #ff3535;"));
+        closeButton.setOnMouseExited(e -> closeButton.setStyle("-fx-background-color:  #a10101;"));
+
+        minimizeButton.setOnAction(event -> {
+            Stage stage = (Stage) minimizeButton.getScene().getWindow();
+            stage.setIconified(true);
+        });
+
         usernameField.setOnKeyPressed(this::handleKeyPress);
         passwordField.setOnKeyPressed(this::handleKeyPress);
 
         loginButton.setOnMouseEntered(e -> loginButton.setStyle("-fx-background-color: #9145f5;"));
-        loginButton.setOnMouseExited(e -> loginButton.setStyle("-fx-background-color:  #732bb5;"));
+        loginButton.setOnMouseExited(e -> loginButton.setStyle("-fx-background-color: #732bb5;"));
+
+        vbox.translateXProperty().bind(anchorPane.widthProperty().subtract(vbox.widthProperty()).divide(2));
+        vbox.translateYProperty().bind(anchorPane.heightProperty().subtract(vbox.heightProperty()).divide(2));
+
+        showPasswordCheckbox.setOnAction(event -> {
+            if (showPasswordCheckbox.isSelected()) {
+                visiblePasswordField.setText(passwordField.getText());
+                visiblePasswordField.setVisible(true);
+                passwordField.setVisible(false);
+            } else {
+                passwordField.setText(visiblePasswordField.getText());
+                passwordField.setVisible(true);
+                visiblePasswordField.setVisible(false);
+            }
+        });
+
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!showPasswordCheckbox.isSelected()) {
+                visiblePasswordField.setText(newValue);
+            }
+        });
+
+        visiblePasswordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (showPasswordCheckbox.isSelected()) {
+                passwordField.setText(newValue);
+            }
+        });
+
+        visiblePasswordField.setVisible(false);
     }
+
 
     private void handleKeyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
@@ -83,6 +137,7 @@ public class LoginController {
             Stage stage = new Stage();
             stage.setTitle("Car Rental System");
             stage.getIcons().add(icon);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -102,6 +157,7 @@ public class LoginController {
 
         Stage stage = new Stage();
         stage.setTitle("Car Rental System - Sign Up");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.getIcons().add(icon);
         stage.setScene(new Scene(root));
         stage.show();
